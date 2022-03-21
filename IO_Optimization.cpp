@@ -1,3 +1,6 @@
+#include <bits/stdc++.h>
+using namespace std;
+
 namespace IO{
     const int size = 1 << 16;
     //////*    Input    *//////
