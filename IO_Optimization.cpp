@@ -1,12 +1,39 @@
 #include <bits/stdc++.h>
+#define endl    '\n'
+#define _       << ' ' <<
+#define LLINF   0x3f3f3f3f3f3f3f3fll
+#define INF     0x3f3f3f3f
+#define MOD     1000000009
+#define Ft      first
+#define Sd      second
+#define Eb      emplace_back
+#define All(v)  v.begin(), v.end()
 using namespace std;
+using lli = long long int;
+using pii = pair<int, int>;
+
+__attribute__((constructor)) void _IO(){
+    //ios::sync_with_stdio(false); cin.tie(0); 
+    #ifndef ONLINE_JUDGE
+        freopen("input.txt", "r", stdin);
+        freopen("output.txt", "w", stdout);
+    #endif
+}
 
 namespace IO{
     const int size = 1 << 16;
     //////*    Input    *//////
-    char __in[size], *__p = __in, *__e = __in;
     inline char gechar(){
-        return __p == __e && (__e = (__p = __in) + fread(__in, 1, size, stdin)) == __in ? EOF : *__p++;
+        static char __in[size], *__p = __in, *__e = __in;
+        static int counts = INF;
+        if(__p == __e ){
+            if(counts < size)
+                return EOF;
+            counts = fread(__in, 1, size, stdin);
+            __p = __in;
+            __e = __in + counts;
+        }
+        return *__p++;
     }
     inline void read(char &ch){ ch = gechar(); while(ch <= 32)ch = gechar(); }
     inline void read(char *s){
@@ -15,13 +42,14 @@ namespace IO{
     }
     template<class Tp>
     bool read(Tp &x){
-        static char ch; static bool sign;
-        while(!isdigit(ch = gechar()) and ch != '-')
+        x = 0; char ch = gechar(); bool sign = false;
+        while(ch < 48 || ch > 57){
             if(ch == EOF)
                 return false;
-        sign = (ch == '-'), x = sign ? 0 : ch - 48;
-        while(isdigit(ch = gechar()))
-            x = (x << 3) + (x << 1) + ch - 48;
+            sign |= (ch == '-'), ch = gechar();
+        }
+        while(ch >= 48 && ch <= 57)
+            x = (x << 3) + (x << 1) + ch - 48, ch = gechar();
         x = sign ? ~x + 1 : x;
         return true;
     }
@@ -48,3 +76,8 @@ namespace IO{
         ~Flusher(){ flush(); }
     }__Flusher;
 }using namespace IO;
+
+template<class Tp> void debug(Tp x){ cerr _ x; }
+template<class Tp, class ...Args> void debug(Tp x, Args ...args){ debug(x), debug(args...); }
+
+//////*    My Code begins here    *//////
