@@ -1,14 +1,3 @@
-#include <stdio.h>
-#include <assert.h>
-#include <memory.h>
-
-template<class T>
-void swap(T& A, T& B){
-    T temp = A;
-    A = B;
-    B = temp;
-} 
-
 template<typename T>
 class MyStack{
 public:
@@ -67,8 +56,3 @@ private:
         struct Node *prev;
     }*tail;
 };
-
-int main(){
-    
-    return 0;
-}
