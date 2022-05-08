@@ -2,6 +2,13 @@
 #include <assert.h>
 #include <memory.h>
 
+template<class T>
+void swap(T& A, T& B){
+    T temp = A;
+    A = B;
+    B = temp;
+} 
+
 template<typename T>
 class MyStack{
 public:
@@ -49,6 +56,10 @@ public:
         --S;
     }
 
+    void swap(MyStack& x) noexcept{
+        swap(x, *this);
+    }
+
 private:
     type_size S;
     struct Node{
@@ -58,5 +69,6 @@ private:
 };
 
 int main(){
+    
     return 0;
 }
